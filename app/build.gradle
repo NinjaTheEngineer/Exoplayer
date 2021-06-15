@@ -6,6 +6,10 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
+    buildFeatures {
+        viewBinding true
+    }
+
     defaultConfig {
         applicationId "com.example.exoplayer"
         minSdkVersion 24
@@ -30,6 +34,7 @@ android {
 
 ext{
     exoplayer = '2.14.1'
+    dagger = '2.37'
 }
 
 dependencies {
@@ -41,4 +46,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation "com.google.android.exoplayer:exoplayer:$exoplayer"
+
+    implementation "com.google.dagger:dagger:$dagger"
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger"
 }
