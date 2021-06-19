@@ -52,7 +52,7 @@ public class UtilityClass {
     }
 
     public String getTimeElapsedBetweenPauses(){
-        return "Restarted = " + df.format(timePaused) + "s";
+        return "Time paused = " + df.format(timePaused) + "s";
     }
 
     public boolean checkIfVideoEnded(int state) {
