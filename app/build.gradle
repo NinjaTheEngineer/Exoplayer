@@ -49,4 +49,7 @@ dependencies {
 
     implementation "com.google.dagger:dagger:$dagger"
     annotationProcessor "com.google.dagger:dagger-compiler:$dagger"
+
+    //Utility Module
+    implementation project(":utility")
 }
