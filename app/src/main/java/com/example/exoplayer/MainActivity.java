@@ -39,9 +39,17 @@ public class MainActivity extends AppCompatActivity implements Player.Listener {
         setUpExoPlayer();
     }
 
+    //Setup ExoPlayer and it's Listeners
     private void setUpExoPlayer() {
         player = new SimpleExoPlayer.Builder(this).build();
         binding.playerView.setPlayer(player);
+
+        binding.btnRestart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                restartVideo(true);
+            }
+        });
 
         // Build the media item.
         MediaItem mediaItem = MediaItem.fromUri(videoUri);
@@ -56,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements Player.Listener {
             public void onIsPlayingChanged(boolean isPlaying) {
                 Log.d(TAG, "> VideoIsPlayerChanged = " + isPlaying);
                 utilityClass.handleVideoIsPlayerChanged(isPlaying, player.getClock().currentTimeMillis());
-                refreshData();
+                retrieveData();
             }
 
             @Override
@@ -69,22 +77,47 @@ public class MainActivity extends AppCompatActivity implements Player.Listener {
             @Override
             public void onPlaybackStateChanged(int state) {
                 if(utilityClass.checkIfVideoEnded(state)){
-                    Log.d(TAG, "> onPlaybackStateChanged Video ENDED");
+                    onVideoEnded();
                 }
             }
         });
     }
 
-    private void initializeUtility() {
-        utilityClass = new UtilityClass();
-        refreshData();
+    //Function to handle what visually happens when the video ends
+    private void onVideoEnded(){
+        binding.playerView.setVisibility(View.GONE);
+        binding.viewPlaying.setVisibility(View.GONE);
+        binding.viewVideoEnded.setVisibility(View.VISIBLE);
+    }
+    //Function to handle what visually happens when restarting the video after it ends
+    private void restartVideo(Boolean resetData){
+        player.seekToDefaultPosition();
+        binding.playerView.setVisibility(View.VISIBLE);
+        binding.viewPlaying.setVisibility(View.VISIBLE);
+        binding.viewVideoEnded.setVisibility(View.GONE);
+
+        utilityClass.resetData(resetData);
+        retrieveData();
     }
 
-    private void refreshData(){
+    //Function to initialize UtilityClass
+    private void initializeUtility() {
+        utilityClass = new UtilityClass();
+        retrieveData();
+    }
+    //Function to refresh data visualized
+    private void retrieveData(){
+        //Playing video layout
         binding.tvNumberOfPausedTimes.setText(utilityClass.getPausedTimes());
         binding.tvNumberOfResumedTimes.setText(utilityClass.getResumedTimes());
         binding.tvNumberOfRestartedTimes.setText(utilityClass.getRestartedTimes());
         binding.tvTimeElapsed.setText(utilityClass.getTimeElapsedBetweenPauses());
+        //End video layout
+        binding.tvNumberOfPausedTimesEnd.setText(utilityClass.getPausedTimes());
+        binding.tvNumberOfResumedTimesEnd.setText(utilityClass.getResumedTimes());
+        binding.tvNumberOfRestartedTimesEnd.setText(utilityClass.getRestartedTimes());
+        binding.tvTimeElapsedEnd.setText(utilityClass.getTimeElapsedBetweenPauses());
+        binding.tvTotalTimePaused.setText(utilityClass.getTotalTimePaused());
     }
 
 }

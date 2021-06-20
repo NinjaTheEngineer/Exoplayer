@@ -10,6 +10,7 @@
         android:id="@+id/viewPlaying"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="visible"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -114,7 +115,18 @@
             android:textColor="@color/black"
             android:textSize="26sp" />
 
+        <TextView
+            android:id="@+id/tvTotalTimePaused"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="Total time paused = 0"
+            android:textColor="@color/black"
+            android:textSize="26sp" />
+
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnRestart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
