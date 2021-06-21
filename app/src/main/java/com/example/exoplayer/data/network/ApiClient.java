@@ -7,18 +7,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL = "192.68.172.1/";
+    public static final String BASE_URL = "http:192.68.172.1/";
 
     public static Retrofit retrofit = null;
 
-    private ApiInterface apiInterface;
+    private static ApiInterface apiInterface;
 
     @Inject
     public ApiClient(){
 
     }
 
-    public ApiInterface createApiInterface(){
+    public static ApiInterface createApiInterface(){
         apiInterface = getClient().create(ApiInterface.class);
         return apiInterface;
     }

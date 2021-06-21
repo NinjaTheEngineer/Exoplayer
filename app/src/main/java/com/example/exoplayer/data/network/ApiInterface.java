@@ -10,11 +10,11 @@ import rx.Observable;
 
 public interface ApiInterface {
     @POST("startload")
-    Observable<DefaultResponse> sendVideoStartLoad(@Query("message") DefaultRequest message);
+    Call<DefaultResponse> sendVideoStartLoad(@Query("message") DefaultRequest message);
 
     @POST("showFirstFrame")
-    Observable<DefaultResponse> sendShowFirstFrame(@Query("message") DefaultRequest message);
+    Call<DefaultResponse> sendShowFirstFrame(@Query("message") DefaultRequest message);
 
     @POST("videoFinished")
-    Observable<DefaultResponse> sendVideoFinished(@Query("message") DefaultRequest message);
+    Call<DefaultResponse> sendVideoFinished(@Query("message") DefaultRequest message);
 }

@@ -30,6 +30,6 @@ public class SendVideoStartLoadUseCase extends Interactor {
 
     @Override
     protected Observable buildUseCaseObservable() {
-        return repository.sendShowFirstFrame(request);
+        return repository.sendVideoStartLoad(request);
     }
 }
