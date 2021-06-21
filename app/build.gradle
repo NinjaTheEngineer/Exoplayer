@@ -35,6 +35,9 @@ android {
 ext{
     exoplayer = '2.14.1'
     dagger = '2.37'
+    retrofit = '2.9.0'
+    retrofit_gson = '2.4.0'
+    rxJava = '1.3.0'
 }
 
 dependencies {
@@ -52,4 +55,11 @@ dependencies {
 
     //Utility Module
     implementation project(":utility")
+
+    //Retrofit Library
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_gson"
+
+    //RxJava
+    implementation "io.reactivex:rxjava:$rxJava"
 }
