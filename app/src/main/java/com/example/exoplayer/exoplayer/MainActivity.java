@@ -1,4 +1,4 @@
-package com.example.exoplayer;
+package com.example.exoplayer.exoplayer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
