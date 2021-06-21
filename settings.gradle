@@ -1,2 +1,3 @@
 rootProject.name = "ExoPlayer"
 include ':app'
+include ':utility'
